@@ -4,7 +4,6 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import javax.validation.ConstraintViolation;
-import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Set;
 
@@ -37,7 +36,7 @@ public class ValidDateValidatorTest {
 
     @Test
     public void test(){
-        DateObject date = DateObject.DateObjectBuilder.aDateObject().startDate(LocalDate.now()).endDate(LocalDate.now().minusDays(10L)).date(this.date).build();
+        DateObject date = DateObject.DateObjectBuilder.aDateObject().date(this.date).build();
         Set<ConstraintViolation<DateObject>> validate = CustomValidatorFactory.getValidator().validate(date);
         for (ConstraintViolation<DateObject> dateObjectConstraintViolation : validate) {
             System.out.println(dateObjectConstraintViolation.getInvalidValue() + " - " + dateObjectConstraintViolation.getMessage());
