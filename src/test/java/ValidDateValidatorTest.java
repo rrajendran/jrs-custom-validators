@@ -24,8 +24,6 @@ public class ValidDateValidatorTest {
                 {"01-01-2001", true},
                 {"31-09-2001", false}, // Max date 30 test
                 {"29-02-2016", true}, // leap year test
-
-
         });
     }
 
