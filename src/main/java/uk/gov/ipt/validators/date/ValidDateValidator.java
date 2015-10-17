@@ -20,9 +20,10 @@ public class ValidDateValidator implements ConstraintValidator<ValidDate, Object
             try {
                 DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(validDate.format());
                 dateTimeFormatter.withResolverStyle(ResolverStyle.STRICT);
-                LocalDate.parse((CharSequence) o, dateTimeFormatter);
+                LocalDate.parse((String) o, dateTimeFormatter);
                 return true;
             } catch (Exception e) {
+                e.printStackTrace();
                return false;
             }
         }
