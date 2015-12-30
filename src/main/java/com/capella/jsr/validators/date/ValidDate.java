@@ -1,4 +1,4 @@
-package uk.gov.ipt.validators.date;
+package com.capella.jsr.validators.date;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -8,7 +8,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author Christian Sterzl
+ * @author Ramesh Rajendran
+ *
+ * @ValidDate()
+ * String date
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)

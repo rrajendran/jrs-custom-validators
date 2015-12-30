@@ -1,9 +1,7 @@
-package uk.gov.ipt.validators.date;
+package com.capella.jsr.validators.date;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 /**
  * Date string validator
@@ -14,10 +12,16 @@ public class ValidDateValidator implements ConstraintValidator<ValidDate, String
         validDate = dateRange;
     }
 
-    public boolean isValid(String o, ConstraintValidatorContext constraintValidatorContext) {
-        if(o != null){
+    /**
+     * is date valid
+     * @param dateString                    Date as string
+     * @param constraintValidatorContext    ${#ConstraintValidatorContext}
+     * @return                              Returns if date is valid or not
+     */
+    public boolean isValid(String dateString, ConstraintValidatorContext constraintValidatorContext) {
+        if(dateString != null){
             try {
-               return isDateValid(o, validDate.format());
+               return DateValidator.isDateValid(dateString, validDate.format());
 
             } catch (Exception e) {
                 constraintValidatorContext.disableDefaultConstraintViolation();
@@ -30,23 +34,5 @@ public class ValidDateValidator implements ConstraintValidator<ValidDate, String
         }
 
         return false;
-    }
-
-    private boolean isDateValid(final String dateToValidate, String dateFormat) throws ParseException {
-
-        if(dateToValidate == null || dateToValidate.trim().length() == 0){
-            return false;
-        }
-
-        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
-        sdf.setLenient(false);
-
-        try {
-            sdf.parse(dateToValidate);
-        } catch (ParseException e) {
-            throw e;
-        }
-
-        return true;
     }
 }
