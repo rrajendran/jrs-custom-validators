@@ -1,4 +1,10 @@
+### Status
+[![Build Status](https://travis-ci.org/rrajendran/jsr-custom-validators.svg)](https://travis-ci.org/rrajendran/jsr-custom-validators)
+
+
 # jrs-custom-validators
+
+
 Adding custom JSR-303 Validators
 
 
