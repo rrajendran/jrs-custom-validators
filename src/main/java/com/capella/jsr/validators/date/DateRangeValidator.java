@@ -16,9 +16,9 @@ public class DateRangeValidator implements ConstraintValidator<DateRange, Object
 
     /**
      * is date valid
-     * @param object                    Date as string
+     * @param object                    Date Range object
      * @param constraintValidatorContext    ${#ConstraintValidatorContext}
-     * @return                              Returns if date is valid or not
+     * @return                              Returns if dates are in valid range
      */
     public boolean isValid(Object object, ConstraintValidatorContext constraintValidatorContext) {
         if(object != null){

@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
 /**
  * @author Ramesh Rajendran
  *
- * @ValidDate()
+ * @DateRange()
  * String date
  */
 @Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
