@@ -36,6 +36,8 @@ public class ValidDateValidatorTest {
     public void test(){
         DateObject date = DateObject.DateObjectBuilder.aDateObject().date(this.date).build();
         Set<ConstraintViolation<DateObject>> validate = CustomValidatorFactory.getValidator().validate(date);
+
+
         for (ConstraintViolation<DateObject> dateObjectConstraintViolation : validate) {
             System.out.println(dateObjectConstraintViolation.getInvalidValue() + " - " + dateObjectConstraintViolation.getMessage());
         }

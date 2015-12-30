@@ -2,31 +2,51 @@ package uk.gov.ipt.validators.date;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
- *
+ * Date string validator
  */
-public class ValidDateValidator implements ConstraintValidator<ValidDate, Object> {
+public class ValidDateValidator implements ConstraintValidator<ValidDate, String> {
     ValidDate validDate = null;
     public void initialize(ValidDate dateRange) {
         validDate = dateRange;
     }
 
-    public boolean isValid(Object o, ConstraintValidatorContext constraintValidatorContext) {
-        if(o != null && o instanceof  String){
+    public boolean isValid(String o, ConstraintValidatorContext constraintValidatorContext) {
+        if(o != null){
             try {
-                DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(validDate.format());
-                dateTimeFormatter.withResolverStyle(ResolverStyle.STRICT);
-                LocalDate.parse((CharSequence) o, dateTimeFormatter);
-                return true;
+               return isDateValid(o, validDate.format());
+
             } catch (Exception e) {
+                constraintValidatorContext.disableDefaultConstraintViolation();
+                constraintValidatorContext.buildConstraintViolationWithTemplate(
+                        validDate.message() +" - " + e.getMessage()
+                )
+                        .addConstraintViolation();
                return false;
             }
         }
 
         return false;
+    }
+
+    private boolean isDateValid(final String dateToValidate, String dateFormat) throws ParseException {
+
+        if(dateToValidate == null || dateToValidate.trim().length() == 0){
+            return false;
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+        sdf.setLenient(false);
+
+        try {
+            sdf.parse(dateToValidate);
+        } catch (ParseException e) {
+            throw e;
+        }
+
+        return true;
     }
 }
