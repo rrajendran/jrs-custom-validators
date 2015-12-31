@@ -1,7 +1,7 @@
 package com.capella.jsr.validators.date;
 
 /**
- * Copyright 2015 (c) Mastek UK Ltd
+ *
  * <p>
  * Created on : 12/30/15
  *
