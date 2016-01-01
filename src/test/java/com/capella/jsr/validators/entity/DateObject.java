@@ -1,4 +1,6 @@
-package com.capella.jsr.validators.date;
+package com.capella.jsr.validators.entity;
+
+import com.capella.jsr.validators.date.ValidDate;
 
 public class DateObject {
 

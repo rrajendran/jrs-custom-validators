@@ -1,6 +1,6 @@
 package com.capella.jsr.validators.date;
 
-import com.capella.jsr.validators.validators.DateRangeValidator;
+import com.capella.jsr.validators.validators.ValidEmailValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -13,15 +13,11 @@ import java.lang.annotation.Target;
  * @author Ramesh Rajendran
  * @DateRange() String date
  */
-@Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
+@Target({ElementType.FIELD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = DateRangeValidator.class)
-public @interface DateRange {
-    String[] fields();
-
-    String format() default "dd-MM-yyyy";
-
-    String message() default "Date range is not valid";
+@Constraint(validatedBy = ValidEmailValidator.class)
+public @interface ValidEmail {
+    String message() default "Invalid e-mail address";
 
     Class<?>[] groups() default {};
 

@@ -1,5 +1,6 @@
 package com.capella.jsr.validators.date;
 
+import com.capella.jsr.validators.entity.DateObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -20,7 +21,7 @@ public class ValidDateValidatorTest {
     private String date;
     private boolean result;
 
-    @Parameters
+    @Parameters(name = "{index}: Date - {0} isValid {1}")
     public static Collection<Object[]> data() {
         return asList(new Object[][]{
                 {"01-01-2001", true},
@@ -41,10 +42,6 @@ public class ValidDateValidatorTest {
         DateObject date = DateObject.DateObjectBuilder.aDateObject().date(this.date).build();
         Set<ConstraintViolation<DateObject>> validate = CustomValidatorFactory.getValidator().validate(date);
 
-
-        for (ConstraintViolation<DateObject> dateObjectConstraintViolation : validate) {
-            System.out.println(dateObjectConstraintViolation.getInvalidValue() + " - " + dateObjectConstraintViolation.getMessage());
-        }
         assertEquals(this.result, validate.size() == 0);
     }
 

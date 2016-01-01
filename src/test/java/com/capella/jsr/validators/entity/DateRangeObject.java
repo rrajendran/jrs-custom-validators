@@ -1,13 +1,14 @@
-package com.capella.jsr.validators.date;
+package com.capella.jsr.validators.entity;
+
+import com.capella.jsr.validators.date.DateRange;
 
 /**
- *
  * <p>
  * Created on : 12/30/15
  *
  * @author Ramesh Rajendran
  */
-@DateRange(fields = {"startDate","endDate"},format = "dd-MM-yyyy", message = "Given dates are not in valid range")
+@DateRange(fields = {"startDate", "endDate"}, format = "dd-MM-yyyy", message = "Given dates are not in valid range")
 public class DateRangeObject {
 
     private String startDate;

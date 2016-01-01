@@ -2,8 +2,7 @@
 Adding custom JSR-303 Validators
 
 
-@ValidDate
-===============
+##@ValidDate
 Validates if the give string has a valid startDate or not. Can provide startDate format also. Default is yyyy-MM-dd
 <br />
 Example
@@ -13,9 +12,7 @@ Example
 </pre>
 
 
-@DateRange
-===============
-
+##@DateRange
 <pre>
 @DateRange(fields = {"startDate","endDate"},format = "dd-MM-yyyy", message = "Given dates are not in valid range")
 public class DateRangeObject {
@@ -24,9 +21,13 @@ public class DateRangeObject {
 }
 </pre>
 
-How to use it
-=============
+##@ValidEmail
+<pre>
+    @ValidEmail(message = "This email is not valid")
+    private String email;
+</pre>
 
+##How to use it
 <pre>
     Set<ConstraintViolation<DateRangeObject>> validate = Validation.buildDefaultValidatorFactory().getValidator().validate(dateObject);
 </pre>

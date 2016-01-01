@@ -1,5 +1,6 @@
 package com.capella.jsr.validators.date;
 
+import com.capella.jsr.validators.entity.DateRangeObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -21,12 +22,12 @@ public class DateRangeValidatorTest {
     private String endDate;
     private boolean result;
 
-    @Parameters
+    @Parameters(name = "{index}: Dates- {0}/{1} - Expected {2}")
     public static Collection<Object[]> data() {
         return asList(new Object[][]{
-                {"01-01-2001", "01-01-2000",false},
-                {"28-02-2016", "29-02-2016",true}, // leap year date range
-                {"01-01-2001", "02-01-2001",true}
+                {"01-01-2001", "01-01-2000", false},
+                {"28-02-2016", "29-02-2016", true}, // leap year date range
+                {"01-01-2001", "02-01-2001", true}
         });
     }
 
@@ -37,15 +38,11 @@ public class DateRangeValidatorTest {
     }
 
     @Test
-    public void test(){
+    public void test() {
         DateRangeObject dateRangeObject = DateRangeObject.DateRangeObjectBuilder.getInstance().startDate(this.startDate).endDate(this.endDate).build();
 
         Set<ConstraintViolation<DateRangeObject>> validate = CustomValidatorFactory.getValidator().validate(dateRangeObject);
 
-
-        for (ConstraintViolation<DateRangeObject> dateObjectConstraintViolation : validate) {
-            System.out.println(dateObjectConstraintViolation.getInvalidValue() + " - " + dateObjectConstraintViolation.getMessage());
-        }
         assertEquals(this.result, validate.size() == 0);
     }
 

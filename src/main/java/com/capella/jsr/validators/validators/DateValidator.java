@@ -1,23 +1,28 @@
-package com.capella.jsr.validators.date;
+package com.capella.jsr.validators.validators;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
 
 /**
- *
- *
- *
+ * Date validator utility class
  * @author Ramesh Rajendran
  */
 public final class DateValidator {
 
+    /**
+     * Is given date valid
+     *
+     * @param dateToValidate
+     * @param dateFormat
+     * @return
+     * @throws ParseException
+     */
     public static boolean isDateValid(final String dateToValidate, String dateFormat) throws ParseException {
 
-        if(dateToValidate == null || dateToValidate.trim().length() == 0){
+        if (dateToValidate == null || dateToValidate.trim().length() == 0) {
             return false;
         }
 
@@ -33,9 +38,16 @@ public final class DateValidator {
         return true;
     }
 
+    /**
+     * convert to localdate
+     * @param dateToValidate
+     * @param dateFormat
+     * @return
+     * @throws ParseException
+     */
     public static LocalDate toDate(final String dateToValidate, String dateFormat) throws ParseException {
 
-        if(dateToValidate == null || dateToValidate.trim().length() == 0){
+        if (dateToValidate == null || dateToValidate.trim().length() == 0) {
             return null;
         }
 
@@ -51,14 +63,19 @@ public final class DateValidator {
     }
 
     /**
-     * Calls {@link #asLocalDate(Date, ZoneId)} with the system default time zone.
+     * Convert to localdate for a given Date
+     * @param date
+     * @return
      */
     public static LocalDate asLocalDate(java.util.Date date) {
         return asLocalDate(date, ZoneId.systemDefault());
     }
 
     /**
-     * Creates {@link LocalDate} from {@code java.util.Date} or it's subclasses. Null-safe.
+     * Convert to local date
+     * @param date
+     * @param zone
+     * @return
      */
     public static LocalDate asLocalDate(java.util.Date date, ZoneId zone) {
         if (date == null)
@@ -72,6 +89,7 @@ public final class DateValidator {
 
     /**
      * Is date in range for given two dates.
+     *
      * @param fieldStartDate
      * @param fieldEndDate
      * @param format
@@ -79,9 +97,9 @@ public final class DateValidator {
      * @throws ParseException
      */
     public static boolean isDatesInRange(String fieldStartDate, String fieldEndDate, String format) throws ParseException {
-        if(isDateValid(fieldStartDate,format) && isDateValid(fieldEndDate,format)){
-            LocalDate startDate = toDate(fieldStartDate,format);
-            LocalDate endDate = toDate(fieldEndDate,format);
+        if (isDateValid(fieldStartDate, format) && isDateValid(fieldEndDate, format)) {
+            LocalDate startDate = toDate(fieldStartDate, format);
+            LocalDate endDate = toDate(fieldEndDate, format);
             return startDate.isBefore(endDate);
         }
         return false;
