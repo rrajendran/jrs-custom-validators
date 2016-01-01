@@ -1,5 +1,7 @@
 package uk.gov.ipt.validators.date;
 
+import com.capella.jsr.validators.date.ValidDate;
+
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.time.LocalDate;
@@ -10,7 +12,7 @@ import java.time.format.ResolverStyle;
  *
  */
 public class ValidDateValidator implements ConstraintValidator<ValidDate, Object> {
-    ValidDate validDate = null;
+    private ValidDate validDate = null;
     public void initialize(ValidDate dateRange) {
         validDate = dateRange;
     }
