@@ -1,10 +1,10 @@
-### Status
+#jrs-custom-validators
 [![Build Status](https://travis-ci.org/rrajendran/jsr-custom-validators.svg)](https://travis-ci.org/rrajendran/jsr-custom-validators)
 
+##Adding custom JSR-303 Validators
 
-# jrs-custom-validators
 
-
+##@ValidDate
 Adding custom JSR-303 Validators
 
 
@@ -31,8 +31,7 @@ public class DateRangeObject {
 <pre>
     @ValidEmail(message = "This email is not valid")
     private String email;
-</pre>
-
+</pre> 
 ##How to use it
 <pre>
     Set<ConstraintViolation<DateRangeObject>> validate = Validation.buildDefaultValidatorFactory().getValidator().validate(dateObject);
